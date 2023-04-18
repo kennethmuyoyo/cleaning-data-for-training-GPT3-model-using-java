@@ -111,9 +111,15 @@ public class Main {
         }
     }
     private static PromptCompletionClass getPromptChoice( String subject, String message) {
-        String prompt1="good";
-        String prompt2="bad";
-        String prompt3="kinda";
+        String prompt1="emotional story email";
+        String prompt2="contrarian angle email";
+        String prompt3="curiosity and shock angle email";
+        String prompt4="timely news story emails";
+        String prompt5="proof/credibility angle emails";
+        String prompt6="results angle emails";
+        String prompt7="health test angle email";
+        String prompt8="miracle fod angle emails";
+        String prompt9="conspiracy and survival angle email";
         System.out.println(
                 "loading workstation"
         );
@@ -125,19 +131,31 @@ public class Main {
 
         }
         System.out.println(
-                "Subjects:"+subject+"\n" +
-                "Messages:"+message
+                "Subjects:"+subject+"\n"
+               // "Messages:"+message
         );
+        String[] sentences = message.split("(?<=[.!?])\\s+");
+        for (String sentence : sentences) {
+            System.out.println(sentence);
+        }
+        System.out.println("\n\n\n");
         System.out.println("what sort of prompt is this? \n " +
                 "1. "+prompt1+"\n"+
                 "2. "+prompt2+"\n"+
-                "3. "+prompt3+"\n"
+                "3. "+prompt3+"\n"+
+                "4. "+prompt4+"\n"+
+                "5. "+prompt5+"\n"+
+                "6. "+prompt6+"\n"+
+                "7. "+prompt7+"\n"+
+                "8. "+prompt8+"\n"+
+                "9. "+prompt9+"\n"
         );
 
         PromptCompletionClass promptCompletionClass=new PromptCompletionClass();
         promptCompletionClass.setCompletion(
-                "Subjects:"+subject+"\n" +
+                "Subjects:"+subject+"\n\n" +
                 "Messages:"+message);
+
         Scanner input=new Scanner(System.in);
         int answer=input.nextInt();
 
@@ -145,6 +163,12 @@ public class Main {
             case 1 -> promptCompletionClass.setPrompt(prompt1);
             case 2 -> promptCompletionClass.setPrompt(prompt2);
             case 3 -> promptCompletionClass.setPrompt(prompt3);
+            case 4 -> promptCompletionClass.setPrompt(prompt4);
+            case 5 -> promptCompletionClass.setPrompt(prompt5);
+            case 6 -> promptCompletionClass.setPrompt(prompt6);
+            case 7 -> promptCompletionClass.setPrompt(prompt7);
+            case 8 -> promptCompletionClass.setPrompt(prompt8);
+            case 9 -> promptCompletionClass.setPrompt(prompt9);
         }
 
         return promptCompletionClass;
@@ -171,6 +195,8 @@ public class Main {
                 }else if (line.startsWith("**") && line.endsWith("**")){
 
                     subject=line;
+                    subject=subject.replace("**Subject Line:","");
+                    subject=subject.replace("**","");
 
 
                     StringBuilder builder=new StringBuilder();
